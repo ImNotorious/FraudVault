@@ -19,7 +19,7 @@ import {
   Cell,
 } from "recharts"
 import { AlertTriangle, CheckCircle, Clock, DollarSign, AlertCircle } from "lucide-react"
-import { transactionsAPI } from "../../lib/api"
+import { transactionsAPI } from "@/../../lib/api"
 import { Button } from "@/components/ui/button"
 
 // Sample data - in a real app, this would come from your API
