@@ -217,7 +217,7 @@ export default function FeaturesPage() {
               </CardHeader>
               <CardContent>
                 <ul className="list-disc list-inside space-y-2 text-muted-foreground">\
-                  <li>Real-time API latency < 300ms</li>
+                  <li>Real-time API latency 300ms</li>
                   <li>Batch processing with parallel execution</li>
                   <li>Optimized database queries</li>
                   <li>Caching for frequently accessed data</li>
