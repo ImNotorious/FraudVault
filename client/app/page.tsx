@@ -208,7 +208,7 @@ const Index = () => {
                 Contact Us
               </Link>
             </div>
-            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} FDAM. All rights reserved.</div>
+            <div className="text-sm text-muted-foreground">© {new Date().getFullYear()} FraudVault. All rights reserved.</div>
           </div>
         </div>
       </footer>

@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "FDAM - Fraud Detection, Alert, and Monitoring",
+  title: "FraudVault",
   description: "A comprehensive fraud detection system for payment gateways",
     generator: 'v0.dev'
 }

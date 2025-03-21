@@ -18,7 +18,9 @@ import {
   Pie,
   Cell,
 } from "recharts"
-import { AlertTriangle, CheckCircle, Clock, DollarSign } from "lucide-react"
+import { AlertTriangle, CheckCircle, Clock, DollarSign, AlertCircle } from "lucide-react"
+import { transactionsAPI } from "../../lib/api"
+import { Button } from "@/components/ui/button"
 
 // Sample data - in a real app, this would come from your API
 const timeSeriesData = [
@@ -66,22 +68,64 @@ export default function Dashboard() {
     fraudReported: 0,
     avgResponseTime: 0,
   })
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const fetchMetrics = async () => {
+    try {
+      setLoading(true)
+      setError(null)
+
+      // Try to fetch from the API
+      const data = await transactionsAPI.getTransactionStats()
+      setMetrics({
+        totalTransactions: data.totalTransactions || 0,
+        fraudDetected: data.fraudDetected || 0,
+        fraudReported: data.fraudReported || 0,
+        avgResponseTime: data.avgResponseTime || 0,
+      })
+    } catch (err) {
+      console.error("Error fetching metrics:", err)
+      setError("Failed to load metrics. Using sample data instead.")
+
+      // Fallback to sample data
+      setMetrics({
+        totalTransactions: 12500,
+        fraudDetected: 450,
+        fraudReported: 380,
+        avgResponseTime: 120,
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   useEffect(() => {
-    // In a real app, fetch this data from your API
-    setMetrics({
-      totalTransactions: 12500,
-      fraudDetected: 450,
-      fraudReported: 380,
-      avgResponseTime: 120,
-    })
+    fetchMetrics()
   }, [])
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-        <p className="text-muted-foreground">Overview of fraud detection metrics and analytics</p>
+      <div className="flex justify-between items-center">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <p className="text-muted-foreground">Overview of fraud detection metrics and analytics</p>
+        </div>
+        {error && (
+          <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <AlertCircle className="h-5 w-5 text-yellow-500" />
+              </div>
+              <div className="ml-3">
+                <p className="text-sm">{error}</p>
+              </div>
+            </div>
+          </div>
+        )}
+        <Button onClick={fetchMetrics} disabled={loading}>
+          {loading ? "Loading..." : "Refresh Data"}
+        </Button>
       </div>
 
       {/* Key Metrics */}
@@ -94,7 +138,11 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Total Transactions</p>
-                <h3 className="text-2xl font-bold">{metrics.totalTransactions.toLocaleString()}</h3>
+                {loading ? (
+                  <div className="h-6 w-24 bg-gray-200 animate-pulse rounded"></div>
+                ) : (
+                  <h3 className="text-2xl font-bold">{metrics.totalTransactions.toLocaleString()}</h3>
+                )}
               </div>
             </div>
           </CardContent>
@@ -107,7 +155,11 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Fraud Detected</p>
-                <h3 className="text-2xl font-bold">{metrics.fraudDetected.toLocaleString()}</h3>
+                {loading ? (
+                  <div className="h-6 w-24 bg-gray-200 animate-pulse rounded"></div>
+                ) : (
+                  <h3 className="text-2xl font-bold">{metrics.fraudDetected.toLocaleString()}</h3>
+                )}
               </div>
             </div>
           </CardContent>
@@ -120,7 +172,11 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Fraud Reported</p>
-                <h3 className="text-2xl font-bold">{metrics.fraudReported.toLocaleString()}</h3>
+                {loading ? (
+                  <div className="h-6 w-24 bg-gray-200 animate-pulse rounded"></div>
+                ) : (
+                  <h3 className="text-2xl font-bold">{metrics.fraudReported.toLocaleString()}</h3>
+                )}
               </div>
             </div>
           </CardContent>
@@ -133,7 +189,11 @@ export default function Dashboard() {
               </div>
               <div>
                 <p className="text-sm font-medium text-muted-foreground">Avg Response Time</p>
-                <h3 className="text-2xl font-bold">{metrics.avgResponseTime} ms</h3>
+                {loading ? (
+                  <div className="h-6 w-24 bg-gray-200 animate-pulse rounded"></div>
+                ) : (
+                  <h3 className="text-2xl font-bold">{metrics.avgResponseTime} ms</h3>
+                )}
               </div>
             </div>
           </CardContent>
