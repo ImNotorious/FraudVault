@@ -79,7 +79,7 @@ export default function DashboardLayout({
           <SidebarHeader>
             <div className="flex items-center px-2 py-3">
               <Shield className="h-6 w-6 mr-2 text-primary" />
-              <span className="text-xl font-bold">FDAM System</span>
+              <span className="text-xl font-bold">FraudVault System</span>
             </div>
           </SidebarHeader>
           <SidebarSeparator />

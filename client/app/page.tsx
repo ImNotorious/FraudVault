@@ -11,7 +11,7 @@ const Index = () => {
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="font-bold text-xl">FDAM</span>
+              <span className="font-bold text-xl">FraudVault</span>
             </Link>
           </div>
           <div className="flex items-center justify-end space-x-4">
@@ -195,7 +195,7 @@ const Index = () => {
         <div className="container mx-auto px-4 md:px-6 max-w-7xl">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="flex items-center space-x-2">
-              <span className="font-bold">FDAM</span>
+              <span className="font-bold">FraudVault</span>
             </div>
             <div className="flex items-center space-x-4">
               <Link href="/terms" className="text-sm text-muted-foreground hover:underline">

@@ -12,7 +12,7 @@ export default function FeaturesPage() {
         <div className="container flex h-16 items-center">
           <div className="mr-4 flex">
             <Link href="/" className="flex items-center space-x-2">
-              <span className="font-bold text-xl">FDAM</span>
+              <span className="font-bold text-xl">FraudVault</span>
             </Link>
           </div>
           <div className="flex flex-1 items-center justify-end space-x-4">
@@ -329,7 +329,7 @@ export default function FeaturesPage() {
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
             <div className="flex items-center space-x-2">
-              <span className="font-bold">FDAM</span>
+              <span className="font-bold">FraudVault</span>
             </div>
             <div className="flex items-center space-x-4">
               <Link href="/terms" className="text-sm text-muted-foreground hover:underline">
@@ -343,7 +343,7 @@ export default function FeaturesPage() {
               </Link>
             </div>
             <div className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} FDAM. All rights reserved.
+              © {new Date().getFullYear()} FraudVault. All rights reserved.
             </div>
           </div>
         </div>
